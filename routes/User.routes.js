@@ -10,7 +10,9 @@ userRouter.post("/register", async (req, res) => {
     bcrypt.hash(pass, 5, async (err, hash) => {
       const user = new UserModel({ name, age, email, pass: hash });
       await user.save();
-      res.status(200).send({ msg: "New User has been registered" });
+      res
+        .status(200)
+        .send({ msg: "New User has been registered", status: true });
     });
   } catch (err) {
     res.status(400).send({ err: err.msg });
