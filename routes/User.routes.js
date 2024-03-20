@@ -15,7 +15,7 @@ userRouter.post("/register", async (req, res) => {
         .send({ msg: "New User has been registered", status: true });
     });
   } catch (err) {
-    res.status(400).send({ err: err.msg });
+    res.status(400).send({ err: err.msg, status: false });
   }
 });
 
