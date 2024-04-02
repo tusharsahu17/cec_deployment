@@ -19,7 +19,7 @@ noteRouter.get("/", async (req, res) => {
     if (result) {
       res
         .status(200)
-        .send({ data: result, message: "Notes Found Sucessfully" });
+        .send({ data: result, message: "Notes found Successfully" });
     } else {
       res.status(200).send({ message: "Notes cannot be Found Successfully" });
     }
