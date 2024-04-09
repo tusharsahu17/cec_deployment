@@ -1,10 +1,10 @@
 const express = require("express");
+const { auth } = require("./middleware/auth.middleware");
 const { connection } = require("./db");
 const { userRouter } = require("./routes/User.routes");
-const { auth } = require("./middleware/auth.middleware");
 const { noteRouter } = require("./routes/Notes.route");
 const { courseRouter } = require("./routes/Course.route");
-const { FreeCourseRouter } = require("./routes/FreeCourse.route");
+const { PaidCourseRouter } = require("./routes/PaidCourse.route");
 
 const app = express();
 const cors = require("cors");
@@ -14,10 +14,10 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 //protected
-app.use(auth);
+// app.use(auth);
 app.use("/notes", noteRouter);
 app.use("/course", courseRouter);
-app.use("/freeCourse", FreeCourseRouter);
+app.use("/paidCourse", PaidCourseRouter);
 
 app.listen(process.env.port, async () => {
   try {
