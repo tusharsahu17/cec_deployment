@@ -8,6 +8,7 @@ const { PaidCourseRouter } = require("./routes/PaidCourse.route");
 
 const app = express();
 const cors = require("cors");
+const { QuestionRouter } = require("./routes/Questions.route");
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use("/users", userRouter);
 app.use("/notes", noteRouter);
 app.use("/course", courseRouter);
 app.use("/paidCourse", PaidCourseRouter);
+app.use("/question", QuestionRouter);
 
 app.listen(process.env.port, async () => {
   try {
