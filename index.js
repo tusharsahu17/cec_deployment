@@ -18,6 +18,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 const fileUpload = require("express-fileupload");
+const { SliderRouter } = require("./routes/Slider.route");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   fileUpload({
@@ -38,6 +39,7 @@ app.use("/paidCourse", PaidCourseRouter);
 app.use("/question", QuestionRouter);
 app.use("/news", NewsRouter);
 app.use("/paid-test-series", PaidTestRouter);
+app.use("/slider", SliderRouter);
 
 app.listen(process.env.port, async () => {
   try {
