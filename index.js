@@ -10,6 +10,7 @@ const { courseRouter } = require("./routes/Course.route");
 const { PaidCourseRouter } = require("./routes/PaidCourse.route");
 const { QuestionRouter } = require("./routes/Questions.route");
 const { NewsRouter } = require("./routes/News.route");
+const { PaidTestRouter } = require("./routes/PaidTest.route");
 
 const app = express();
 const cors = require("cors");
@@ -36,6 +37,7 @@ app.use("/course", courseRouter);
 app.use("/paidCourse", PaidCourseRouter);
 app.use("/question", QuestionRouter);
 app.use("/news", NewsRouter);
+app.use("/paid-test-series", PaidTestRouter);
 
 app.listen(process.env.port, async () => {
   try {

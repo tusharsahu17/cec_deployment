@@ -15,12 +15,24 @@ QuestionRouter.post("/create", async (req, res) => {
 });
 
 QuestionRouter.get("/", async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 1; // Set default limit or the number of items per page
+  const skipIndex = (page - 1) * limit;
   try {
-    const result = await QuestionModel.find();
+    // Finding all questions with pagination
+    const result = await QuestionModel.find()
+      .sort({ _id: 1 })
+      .limit(limit)
+      .skip(skipIndex)
+      .exec();
+
+    const count = await QuestionModel.countDocuments();
+
     res.status(200).send({
       data: result,
-      message: "Free Course found Successfully",
       status: true,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
     });
   } catch (err) {
     res.status(400).send({ message: err.message });
