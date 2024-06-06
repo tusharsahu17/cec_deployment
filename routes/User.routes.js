@@ -30,7 +30,9 @@ userRouter.post("/login", async (req, res) => {
             { authorId: user._id, author: user.name },
             "node"
           );
-          res.status(200).send({ msg: "Login SuccessFull", token: token });
+          res
+            .status(200)
+            .send({ msg: "Login SuccessFull", token: token, userId: user._id });
         } else {
           res.status(200).send({ msg: "Wrong Credentials!!!" });
         }

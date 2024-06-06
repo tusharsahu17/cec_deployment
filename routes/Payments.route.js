@@ -33,8 +33,6 @@ PaymentRouter.get("/pay-testseries/:_id/:courseId", async (req, res) => {
     // Save the updated user document
     await userData.save();
 
-    return console.log("added");
-
     // Generate a unique merchant transaction ID for each transaction
     let merchantTransactionId = "M" + Date.now();
 
@@ -60,6 +58,7 @@ PaymentRouter.get("/pay-testseries/:_id/:courseId", async (req, res) => {
     let string = base64EncodedPayload + "/pg/v1/pay" + SALT_KEY;
     let sha256_val = sha256(string);
     let xVerifyChecksum = sha256_val + "###" + SALT_INDEX;
+    // return console.log("added");
 
     axios
       .post(
