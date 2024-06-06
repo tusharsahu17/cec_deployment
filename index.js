@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 const fileUpload = require("express-fileupload");
 const { SliderRouter } = require("./routes/Slider.route");
+const { PaymentRouter } = require("./routes/Payments.route");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   fileUpload({
@@ -41,6 +42,9 @@ app.use("/news", NewsRouter);
 app.use("/paid-test-series", PaidTestRouter);
 app.use("/slider", SliderRouter);
 
+//phonepe payments
+app.use("/payments", PaymentRouter);
+// app.get('/payment-to-wallet/:id/:amount', paymentToWallet);
 app.listen(process.env.port, async () => {
   try {
     await connection;
